@@ -2,7 +2,8 @@
 <a name="modules"></a>
 Modules allow you to seperate and organize parts of your prototype across different files. They are seperate JavaScript or CoffeeScript files, which you can include (require) within your prototype. They help you organize your code, and choose what parts to focus on. 
 
-You can find them in the /modules folder of your prototype. Modules can be written in CoffeeScript or JavaScript. Modules are based on JavaScript and Node.js standards and use the *require* and *exports* keywords. The exports keyword in the module contains everything you want to expose outside of the module, and the require keyword imports a module from another file.
+You can find them in the /modules folder of your prototype. Modules are based on JavaScript and Node.js standards. Everything that you've prefixed with <code class="inline">exports</code> in your module will be available in your prototype. <br> The <code class="inline">require</code> keyword imports your module.
+
 
 ##### Get Started 
 - Create a new project in Framer Studio
@@ -82,7 +83,7 @@ module.makeDraggable(layerA)
 ##### Example: NPM 
 <a name="modules-npm-example"></a>
 
-Because Framer Studio modules are based on the require standard, they work with [NPM](https://www.npmjs.com/). NPM is a package manager where thousands of JavaScript packages are published. As an example we will import the Underscore library. We are assuming you have NPM installed.
+Framer Studio modules work with [NPM](https://www.npmjs.com/), a package manager where thousands of JavaScript packages are published. Let's import the [Underscore.js](http://underscorejs.org) library. Make sure you already have NPM installed.
 
 <pre>
 # In your terminal
@@ -90,7 +91,7 @@ cd ~/my-framer-project
 npm install underscore
 </pre>
 
-Now in the modules directory, create a module name underscore. And in that module import and expose underscore to Framer.
+Create a new module in /modules, and name it underscore.coffee. Now, you can import the underscore library and use it within your prototype.
 
 <pre lang="coffeescript">
 exports.underscore = require "underscore"
