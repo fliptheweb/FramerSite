@@ -15,7 +15,7 @@ You can find them in the /modules folder of your prototype. Modules are based on
 module = require "myModule"
 </pre>
 
-Your modules can contain anything, including variables, arrays, functions, layers and much more. For example, you can create Layers within your modules, or define specific interactions within functions.
+Make sure to save your file and refresh your prototype to see changes. Modules can contain anything. For example, you can create Layers within your modules, or define specific interactions within functions. 
 
 <pre lang="coffeescript">
 # Store variables
@@ -63,7 +63,7 @@ exports.makeDraggable = (layer) ->
 			curve: "spring(300,20,0)"
 </pre>
 
-Now, within our prototype, we can call the makeDraggable function from our module to include the dragging interaction.
+Now, within our prototype, we can call the makeDraggable function from our module to include the dragging interaction. 
 
 <pre lang="coffeescript">
 # Include module
