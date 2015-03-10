@@ -1,0 +1,58 @@
+### Modules
+<a name="modules"></a>
+Modules allow you to seperate and organize parts of your prototype across different files. They are seperate JavaScript or CoffeeScript files, which you can include (require) within your prototype. They help you organize your code, and choose what parts to focus on. 
+
+You can find them in the /modules folder of your prototype.
+
+##### Get Started 
+- Create a new project in Framer Studio
+- Navigate to the /modules folder and open the myModule.coffee file in a text-editor.
+- To include the module within your project, add: module = require "myModule"
+
+<pre lang="coffeescript">
+# To include myModule.coffee 
+module = require "myModule"
+</pre>
+
+<!-- ###### layer.x <span>number</span>
+<a id="layer.x"></a>
+The x property of a layer defines its x position relative to the top left corner.
+ -->
+
+##### Example 
+
+Let's create a simple draggable interaction within a module. In our myModule.coffee file, we include the following function. It takes a layer, makes it draggable, and snaps it back to its original position on DragEnd.
+
+
+<pre lang="coffeescript">
+# A draggable function without our module
+exports.makeDraggable = (layer) ->
+	layer.draggable.enabled = true
+
+	# Store current x and y position
+	startX = layer.x
+	startY = layer.y
+
+	# Animate back on DragEnd
+	layer.on Events.DragEnd, ->
+		this.animate
+			properties: { x: startX, y: startY }
+			curve: "spring(300,20,0)"
+</pre>
+
+Now, within our prototype, we can call the makeDraggable function from our module to include the dragging interaction.
+
+<pre lang="coffeescript">
+# Include module
+module = require "myModule"
+
+# Set background
+bg = new BackgroundLayer backgroundColor: "#28AFFA"
+
+# Create a new layer
+layerA = new Layer backgroundColor: "#fff", borderRadius:4
+layerA.center()
+
+# Call the function within our module
+module.makeDraggable(layerA)
+</pre>

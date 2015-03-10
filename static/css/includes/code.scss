@@ -124,7 +124,13 @@ pre, code {
 .content-inner pre ol li { 
     color: #788D9E; // Default
 } 
-.k, .kc { color: #FF9740;} // Orange
+.k, 
+.kc,
+.k + .nx { 
+color: #FF9740; // Orange
+// k + nx = followed by "New"
+} 
+
 .c, 
 .cm,
 .cp,
@@ -132,6 +138,7 @@ pre, code {
 .cs { color: #A4BDD1; }  // Comment 
 
 .mi, .mf { color: #5BC1F0 } // Blue
+
 .s { 
     color: #8DDE19; // Original Green
     color: #6ED300; // Darker Green
@@ -145,6 +152,16 @@ pre, code {
 .si + .s,
 .nx + .si {
     color: #6ED300; // Darker Green
+}
+
+// Arrows, Purple
+// .nf {
+// 	color: #8487E9;
+// }
+
+// Lighter, following dots like ".states.add etc"
+.p + .nx {
+    color: #79A3C4;
 }
 
 // Custom Line Numbers
