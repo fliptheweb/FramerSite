@@ -7,22 +7,44 @@ You can find them in the /modules folder of your prototype.
 ##### Get Started 
 - Create a new project in Framer Studio
 - Navigate to the /modules folder and open the myModule.coffee file in a text-editor.
-- To include the module within your project, add: module = require "myModule"
+- To include the module within your project, add the following:
+
+<pre lang="coffeescript">
+# To include myModule.coffee in our prototype
+module = require "myModule"
+</pre>
+
+Your modules can contain anything, including variables, arrays, functions, layers and much more. For example, you can create Layers within your modules, or define specific interactions within functions.
+
+<pre lang="coffeescript">
+# Store variables
+exports.myVar = "myVariable"
+
+# Create functions
+exports.myFunction = -> print "I'm running!"
+
+# Create Arrays
+exports.myArray = [1, 2, 3]
+
+# Create Layers
+exports.myLayer = new Layer backgroundColor: "#fff"
+</pre>
+
+In the example above, a new layer is automatically created and included within our prototype. To also run the function, you can write:
 
 <pre lang="coffeescript">
 # To include myModule.coffee 
 module = require "myModule"
+
+# Run the function, printing "I'm running!"
+module.myFunction()
 </pre>
 
-<!-- ###### layer.x <span>number</span>
-<a id="layer.x"></a>
-The x property of a layer defines its x position relative to the top left corner.
- -->
 
-##### Example 
+##### Example: Interactions 
+<a name="modules-interactions"></a>
 
 Let's create a simple draggable interaction within a module. In our myModule.coffee file, we include the following function. It takes a layer, makes it draggable, and snaps it back to its original position on DragEnd.
-
 
 <pre lang="coffeescript">
 # A draggable function without our module
@@ -53,6 +75,6 @@ bg = new BackgroundLayer backgroundColor: "#28AFFA"
 layerA = new Layer backgroundColor: "#fff", borderRadius:4
 layerA.center()
 
-# Call the function within our module
+# Add the dragging interaction to layerA
 module.makeDraggable(layerA)
 </pre>
