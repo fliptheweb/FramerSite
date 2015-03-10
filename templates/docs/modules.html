@@ -2,7 +2,7 @@
 <a name="modules"></a>
 Modules allow you to seperate and organize parts of your prototype across different files. They are seperate JavaScript or CoffeeScript files, which you can include (require) within your prototype. They help you organize your code, and choose what parts to focus on. 
 
-You can find them in the /modules folder of your prototype.
+You can find them in the /modules folder of your prototype. Modules can be written in CoffeeScript or JavaScript. Modules are based on JavaScript and Node.js standards and use the *require* and *exports* keywords. The exports keyword in the module contains everything you want to expose outside of the module, and the require keyword imports a module from another file.
 
 ##### Get Started 
 - Create a new project in Framer Studio
@@ -42,7 +42,7 @@ module.myFunction()
 
 
 ##### Example: Interactions 
-<a name="modules-interactions"></a>
+<a name="modules-interactions-example"></a>
 
 Let's create a simple draggable interaction within a module. In our myModule.coffee file, we include the following function. It takes a layer, makes it draggable, and snaps it back to its original position on DragEnd.
 
@@ -77,4 +77,21 @@ layerA.center()
 
 # Add the dragging interaction to layerA
 module.makeDraggable(layerA)
+</pre>
+
+##### Example: NPM 
+<a name="modules-npm-example"></a>
+
+Because Framer Studio modules are based on the require standard, they work with [NPM](https://www.npmjs.com/). NPM is a package manager where thousands of JavaScript packages are published. As an example we will import the Underscore library. We are assuming you have NPM installed.
+
+<pre>
+# In your terminal
+cd ~/my-framer-project
+npm install underscore
+</pre>
+
+Now in the modules directory, create a module name underscore. And in that module import and expose underscore to Framer.
+
+<pre lang="coffeescript">
+exports.underscore = require "underscore"
 </pre>
