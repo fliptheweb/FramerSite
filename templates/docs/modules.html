@@ -83,16 +83,27 @@ module.makeDraggable(layerA)
 ##### Example: NPM 
 <a name="modules-npm-example"></a>
 
-Framer Studio modules work with <a href="https://www.npmjs.com" target="_blank">NPM</a>, a package manager where thousands of JavaScript packages are published. Let's import the <a href="http://underscorejs.org" target="_blank">Underscore</a> library. Make sure you already have NPM installed.
+Framer Studio modules work with <a href="https://www.npmjs.com" target="_blank">NPM</a>, a package manager where thousands of JavaScript packages are published. Let's import the <a href="http://backbonejs.org/" target="_blank">Backbone</a> library. Make sure you already have NPM installed.
 
 <pre>
 # In your terminal
 cd ~/my-framer-project
-npm install underscore
+npm install backbone
 </pre>
 
-Create a new module in /modules, and name it underscore.coffee. Now, you can import the underscore library and use it within your prototype.
+Create a new module in /modules, and name it npm.coffee. Beware that if you name the file the same as the NPM module (like backbone.coffee), you could run into a recursive import problem.
 
 <pre lang="coffeescript">
-exports.underscore = require "underscore"
+# File: modules/npm.coffee
+exports.backbone = require "backbone"
+</pre>
+
+After a refresh, you can import underscore into your project.
+
+<pre lang="coffeescript">
+# Import the backbone module from your npm index
+backbone = require("npm").backbone
+
+# Or use this nice shortcut, which is the exact same
+{backbone} = require "npm"
 </pre>
