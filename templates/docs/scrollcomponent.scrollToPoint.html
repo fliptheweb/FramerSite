@@ -1,0 +1,20 @@
+###### ScrollComponent.scrollToPoint(<span>object</span>, <span>boolean</span>, <span>object</span>)
+<a id="scrollcomponent.scrollToPoint"></a>
+Scroll to a specific point, optionally animating. Takes three arguments: a point (x and y), animate (true or false) and animationOptions.
+
+<pre lang="coffeescript">
+scroll = new ScrollComponent()
+
+# Scroll content to x:300, y:100
+scroll.scrollToPoint({x:200, y:100}, true, {curve:"ease"})
+
+# Scroll very slowly, with a different notation
+scroll.scrollToPoint(
+	{x:200, y:100}, 
+	animate = true,
+	animationOptions = {curve:"ease", time:10}
+)
+</pre>
+
+
+

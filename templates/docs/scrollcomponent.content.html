@@ -1,0 +1,17 @@
+###### ScrollComponent.content <span>layer</span>
+<a id="scrollcomponent.content"></a>
+The actual layer handling the dragging and scrolling. To add content, create a new Layer and set its superLayer to the scroll.content layer.
+
+<pre lang="coffeescript">
+scroll = new ScrollComponent({
+	width: 100, height: 100
+})
+
+layer = new Layer({
+	image: "images/bg.png",
+	superLayer: scroll.content,
+	width: 100, height: 200
+})
+</pre>
+
+
