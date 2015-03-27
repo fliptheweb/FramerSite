@@ -1,11 +1,33 @@
-###### ScrollComponent.wrap(layer <span>Layer Object</span>)
+###### ScrollComponent.wrap(layer <span>Layer object</span>)
 <a id="scrollcomponent.wrap"></a>
-Current scroll speed and direction in pixels per second at this current time.
+
+Wraps a layer within a new ScrollComponent. This is useful to create scrollable layers out of imported layers.
 
 <pre lang="coffeescript">
-scroll = new ScrollComponent()
-
-# On scroll, print the velocity
-scroll.on Events.Scroll, ->
-	print scroll.velocity
+# Import files from Sketch
+sketch = Framer.Importer.load "imported/Scrollable"
+# Wrap the "content" layer group
+scroll = ScrollComponent.wrap(sketch.content)
 </pre>
+
+Now, `scroll` is the variable name of the ScrollComponent. This also automatically wraps your layer within a ScrollContent layer, which you can select to adjust certain properties like momentum, overdrag or bounce.
+
+<pre lang="coffeescript">
+# Import files from Sketch
+sketch = Framer.Importer.load "imported/Scrollable"
+# Wrap the "content" layer group
+scroll = ScrollComponent.wrap(sketch.content)
+
+
+# Change scroll properties
+scroll.scrollHorizontal = false
+scroll.speedY = 0.5
+
+# Change scroll.content properties
+scroll.content.draggable.momentum = true
+scroll.content.draggable.overdrag = false
+scroll.content.draggable.bounce = false
+</pre>
+
+
+
