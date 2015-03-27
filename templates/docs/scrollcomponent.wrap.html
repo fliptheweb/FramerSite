@@ -1,0 +1,11 @@
+###### ScrollComponent.wrap(layer <span>Layer Object</span>)
+<a id="scrollcomponent.wrap"></a>
+Current scroll speed and direction in pixels per second at this current time.
+
+<pre lang="coffeescript">
+scroll = new ScrollComponent()
+
+# On scroll, print the velocity
+scroll.on Events.Scroll, ->
+	print scroll.velocity
+</pre>
