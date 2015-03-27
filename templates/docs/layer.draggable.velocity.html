@@ -1,0 +1,13 @@
+###### layer.draggable.velocity <span>object</span>
+<a id="layer.draggable.velocity"></a>
+Current velocity for the draggable layer. The velocity is read-only.
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+
+# On DragMove, print the x and y velocity
+layerA.draggable.on Events.DragMove, ->
+	print layerA.draggable.velocity
+</pre>
+

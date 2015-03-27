@@ -1,0 +1,13 @@
+###### layer.draggable.isAnimating <span>bool</span>
+<a id="layer.draggable.isAnimating"></a>
+
+Whether the layer is currently being animated by a momentum or bounce animation. This property is read-only.
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+
+# Check if the layer is animating
+layerA.on Events.DragMove, ->
+	print layerA.draggable.isAnimating
+</pre>

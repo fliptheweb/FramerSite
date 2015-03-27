@@ -1,0 +1,14 @@
+###### layer.draggable.overdragScale <span>number</span>
+<a id="layer.draggable.overdragScale"></a>
+Set the dragging resistance when dragging beyond constraints. The scale is defined with a number between 0 and 1. The default value is 0.5.
+
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+layerA.draggable.constraints = {x:0, y:0, width:200, height:200}
+
+# Increase resistance when dragging beyond constraints
+layerA.draggable.overdragScale = 0.25
+</pre>
+

@@ -1,0 +1,12 @@
+###### layer.draggable.constraints <span>object</span>
+<a id="layer.draggable.constraints"></a>
+Constraints for the area this layer can be dragged within. If you also set the x and y properties as constraints, the layer will snap to that position on DragStart. The layer will animate to the new point on click.
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+
+# Set dragging constraints
+layerA.draggable.constraints = {x:0, y:0, width:200, height:200}
+</pre>
+

@@ -1,0 +1,14 @@
+###### layer.draggable.overdrag <span>bool</span>
+<a id="layer.draggable.overdrag"></a>
+Enable or disable dragging beyond the set constraints.
+
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+layerA.draggable.constraints = {x:0, y:0, width:200, height:200}
+
+# Disable dragging beyond constraints
+layerA.draggable.overdrag = false
+</pre>
+

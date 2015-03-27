@@ -1,0 +1,13 @@
+###### layer.draggable.isDragging <span>bool</span>
+<a id="layer.draggable.isDragging"></a>
+
+Whether the layer is currently being dragged (returns false when animating). This property is read-only.
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+
+# Check if the layer is being dragged
+layerA.on Events.DragMove, ->
+	print layerA.draggable.isDragging
+</pre>

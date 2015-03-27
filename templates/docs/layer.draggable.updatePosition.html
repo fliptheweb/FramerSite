@@ -1,0 +1,24 @@
+###### layer.draggable.updatePosition(x <span>number</span>, y <span>number</span>)
+<a id="layer.draggable.updatePosition"></a>
+<p class="small">
+<strong>Returns:</strong> Object<br>
+</p>
+Function to override the final value before setting it. Allows you to add your own behaviour to a draggable. This allows you to create draggable layers that snap between certain distances.
+
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+
+# Round numbers to a set amount
+round = (number, nearest) ->
+	 Math.round(number / nearest) * nearest
+
+# Drag in increments of 20px
+layerA.draggable.updatePosition = (point) ->
+	point.x = round(point.x, 20)
+	point.y = round(point.y, 20)
+	return point
+
+</pre>
+

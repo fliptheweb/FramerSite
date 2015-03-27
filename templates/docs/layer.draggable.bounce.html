@@ -1,0 +1,13 @@
+###### layer.draggable.bounce <span>bool</span>
+<a id="layer.draggable.bounce"></a>
+Spring animation when momentum runs beyond constraints.
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+layerA.draggable.constraints = {x:0, y:0, width:200, height:200}
+
+# Snap back after dragging beyond constraints
+layerA.draggable.bounce = false
+</pre>
+

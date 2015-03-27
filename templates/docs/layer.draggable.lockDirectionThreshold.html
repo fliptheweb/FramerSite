@@ -1,0 +1,14 @@
+###### layer.draggable.lockDirectionThreshold <span>object</span>
+<a id="layer.draggable.lockDirectionThreshold"></a>
+
+The thresholds for lock directions. The x and y values represent the distance you can drag in a certain direction before it starts locking.
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+
+# Snap horizontally after dragging 50px
+# Snap vertically instantly
+layerA.draggable.lockDirection = true
+layerA.draggable.lockDirectionThreshold = {x:50, y:0}
+</pre>

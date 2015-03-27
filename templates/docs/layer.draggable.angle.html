@@ -1,0 +1,13 @@
+###### layer.draggable.angle <span>number</span>
+<a id="layer.draggable.angle"></a>
+Current angle (in degrees) for the draggable layer. The angle is read-only.
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+
+# On DragMove, print the x and y angle
+layerA.draggable.on Events.DragMove, ->
+	print layerA.draggable.angle
+</pre>
+

@@ -1,0 +1,17 @@
+###### layer.draggable.bounceOptions <span>object</span>
+<a id="layer.draggable.bounceOptions"></a>
+Options for the spring animations when momentum runs beyond constraints.
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+layerA.draggable.constraints = {x:0, y:0, width:200, height:200}
+
+# Define friction, tension and tolerance of bounce
+layerA.draggable.bounceOptions = {
+	friction: 40,
+	tension: 200,
+	tolerance: 0.0001
+}
+</pre>
+
