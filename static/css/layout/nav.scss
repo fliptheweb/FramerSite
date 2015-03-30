@@ -106,6 +106,10 @@ nav.top input {
 	line-height: 1;
 	letter-spacing: 0.5px;
 }
+// Blog in Dropdown
+nav.top .hide-item {
+	display: none;
+}
 // More dropdown
 .more, 
 .more-dropdown {
@@ -245,5 +249,15 @@ nav.top li ul a {
 	}
 	.more-dropdown {
 		left:calc(50% - 32px);
+	}
+}
+
+@media screen and (max-width: 440px) {
+	nav.top .blog {
+		display: none;
+	}
+	// Blog in Dropdown
+	nav.top .hide-item {
+		display: block;
 	}
 }
