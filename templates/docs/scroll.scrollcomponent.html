@@ -11,11 +11,15 @@ scroll = new ScrollComponent({width:100, height:100)}
 layer = new Layer({superLayer:scroll.content})
 </pre>
 
-Rather than building up a ScrollComponent from scratch, you can wrap an existing layer in a ScrollComponent automatically with `ScrollComponent.wrap()`. The ScrollComponent will insert itself inbetween the content and its super layer. This is handy when you for example import a stucture from Sketch or Photoshop and want to make a layer scrollable.
+You can also wrap an existing layer within a ScrollComponent, with `ScrollComponent.wrap()`. The ScrollComponent will insert itself in-between the content and its super layer. This is useful when you've imported designs from Sketch or Photoshop and want to make a layer scrollable.
 
 <pre lang="coffeescript">
 layer = new Layer({width:300, height:300})
 scroll = ScrollComponent.wrap(layer)
 </pre>
 
-Before the ScrollComponent we relied on native browser scrolling with `layer.scroll`. This is still possible, for compatibility sake, and it's good to just have native scrolling available for example when you want to test things like trackpad scrolling. But it is importand to understand that these are different, or you might get confused.
+<a href="#scroll.wrap">Learn more</a> about the `.wrap()` function.
+
+##### Compatibility
+
+Before the ScrollComponent, Framer relied on native browser scrolling with `layer.scroll`. This is still supported, and allows you to experiment with native scrolling and trackpad scrolling.

@@ -1,9 +1,12 @@
 ###### page.originY <span>number</span>
 <a id="page.originY"></a>
 
-A PageComponent is based on the ScrollComponent, but designed for pages of content. It supports content layers of different sizes, and can snap to layers based on location and scroll velocity.
+The origin is defined as a number between 0 and 1, where 0 is the left-edge and 1 the right-edge. The default value is 0.5, the center.
+
+The originX value defined how pages will be snapped-to vertically. 
+Note that the effects of adjusting the originY can only be seen when the width of a page is smaller than the PageComponent.
 
 <pre lang="coffeescript">
-layerA = new Layer()
-layerA.z = 500
+page = new PageComponent()
+page.originY = 0
 </pre>

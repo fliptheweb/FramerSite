@@ -1,0 +1,21 @@
+###### page.velocityThreshold <span>number</span>
+<a id="page.velocityThreshold"></a>
+
+The velocityThreshold influences the role velocity plays in snapping to a different page. Besides the scrolling distance, the PageComponent also takes your scrolling speed (velocity) into account.
+
+
+<pre lang="coffeescript">
+page = new PageComponent()
+page.velocityThreshold = 0.2
+</pre>
+
+To better understand the effects of adjusting the velocityThreshold, you can print out your velocity after Scrolling. If you want switching between pages to be based mostly on distance, increase the velocityThreshold.
+
+<pre lang="coffeescript">
+# Increase the velocityThreshold
+page.velocityThreshold = 5
+
+# After switching between pages, print the velocity 
+page.on Events.ScrollEnd, ->
+	print Math.abs(page.velocity.x)
+</pre>
