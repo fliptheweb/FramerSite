@@ -127,11 +127,11 @@
 	</footer> <!--footer.global-->
 	{% endblock footer %}
 	{% block scripts %}
-	<script src="{% static '/js/main.js' %}?expire=1414619692181"></script>
-	<script src="{% static '/js/download.js' %}"></script>
-	<script src="{% static '/js/analytics.js' %}"></script>
-	<script src="{% static '/js/srcset.min.js' %}"></script>
-	<script src="{% static '/js/mxpnl.js' %}"></script>
+	<script src="{% static '/js/main.js' %}?expire={% now "U" %}"></script>
+	<script src="{% static '/js/download.js' %}?expire={% now "U" %}"></script>
+	<script src="{% static '/js/analytics.js' %}?expire={% now "U" %}"></script>
+	<script src="{% static '/js/srcset.min.js' %}?expire={% now "U" %}"></script>
+	<script src="{% static '/js/mxpnl.js' %}?expire={% now "U" %}"></script>
 	{% include 'crazyegg.html' %}
 	{% endblock scripts %}
 
