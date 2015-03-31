@@ -16,12 +16,16 @@ FramerSite.getDownloadLink = function(callback) {
 	$.get(sparkleHost + "/latest.txt?date=" + Date.now(), function(result) {
 		
 		_downloadLink = downloadHost + "/" + result;
+		callback(_downloadLink)
+
+		if (typeof mixpanel === "undefined") {
+			return;
+		}
 
 		if (mixpanel && mixpanel.get_distinct_id) {
 			_downloadLink += "?mp_id=" + mixpanel.get_distinct_id();
 		}
-
-		callback(_downloadLink)
+		
 	})
 }
 
