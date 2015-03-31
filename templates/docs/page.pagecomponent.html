@@ -1,0 +1,64 @@
+<a id="page.pagecomponent"></a>
+
+A PageComponent is based on the ScrollComponent, but designed for pages of content. It supports content layers of different sizes, and can snap to layers based on location and scroll velocity.
+
+<pre lang="coffeescript">
+# Create a new PageComponent and only allow horizontal scrolling.
+page = new PageComponent 
+	width: Screen.width
+	height: Screen.height
+	scrollVertical: false
+	
+# Define the first page
+pageOne = new Layer
+	width: page.width,
+	height:page.height
+	superLayer: page.content
+	backgroundColor: "#28affa"
+
+</pre>
+
+Let's add a second page now. Read more about the <a href="/docs/page.addPage.html">addPage method</a>.
+
+<pre lang="coffeescript">
+# Define second page
+pageTwo = new Layer
+	width: page.width,
+	height:page.height
+	backgroundColor: "#90D7FF"
+	
+# Add the second page to the right	
+page.addPage(pageTwo, "right")
+</pre>
+
+Another way to go about adding content is by using a <a href="/learn/coffeescript/loops-and-conditionals/">for-loop</a>.
+
+<pre lang="coffeescript">
+# Create a new PageComponent and only allow horizontal scrolling.
+page = new PageComponent 
+	width: Screen.width
+	height: Screen.height
+	scrollVertical: false
+	backgroundColor: "#fff"
+
+# Create 5 new layers in a loop, and add them to the page.content
+# Each page has a random backgroundColor
+for number in [0...5]
+	pageContent = new Layer
+		width: page.width
+		height: page.height
+		x: page.width * number
+		backgroundColor: Utils.randomColor(0.5)
+		superLayer: page.content
+	
+	# Visualize the current page number
+	pageContent.html = pageContent.html = number + 1
+
+	# Center the current page number
+	pageContent.style = {
+		"font-size" : "100px",
+		"font-weight" : "100",
+		"text-align" : "center",
+		"line-height" : "#{page.height}px"
+	}
+</pre>
