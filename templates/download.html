@@ -1,60 +1,7 @@
-<!doctype html>
-<html {% block height %}{% endblock %}>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	{% include 'social.html' %}
+{% extends "base.html" %}
 
-	<!-- Touch Icons -->
-	<link rel="apple-touch-icon" href="{% static '/images/apple-touch-icon.png' %}"> 
-	<link rel="apple-touch-icon" sizes="76x76" href="{% static '/images/apple-touch-icon-76x76.png' %}">
-	<link rel="apple-touch-icon" sizes="120x120" href="{% static '/images/apple-touch-icon-120x120.png' %}">
-	<link rel="apple-touch-icon" sizes="152x152" href="{% static '/images/apple-touch-icon-152x152.png' %}">
-	<link rel="apple-touch-icon" sizes="180x180" href="{% static '/images/apple-touch-icon-180x180.png' %}">
-	<link rel="apple-touch-icon" sizes="192x192" href="{% static '/images/apple-touch-icon-192x192.png' %}">
+{% block nav %}
+{% endblock nav %}
 
-	<!-- Android -->
-	<meta name="mobile-web-app-capable" content="yes">
-	<link rel="icon" sizes="32x32" href="{% static '/images/favicon@2x.png' %}">
-	<link rel="icon" sizes="192x192" href="{% static '/images/icon-highres.png' %}">
-
-	<link rel="shortcut icon" sizes="16x16" href="{% static '/images/favicon.ico' %}">
-	<link rel="shortcut icon" sizes="32x32" href="{% static '/images/favicon@2x.png' %}">
-
-	<!-- Android Tab Color -->
-	<meta name="theme-color" content="#28AFFA">
-
-	{% include 'fonts.html' %}
-	{% block stylesheets %}
-	<link rel="stylesheet" href="{% static '/css/style.css' %}">
-	{% endblock stylesheets %}
-
-	<title>{% block title %}Framer - Prototype Interaction and Animation{% endblock %}</title>
-
-	{% include 'gosquared.html' %}
-
-</head>
-
-<body {% block currentpage %}{% endblock %}>
-
-	<section class="container">
-		{% block content %}
-		{% endblock content %}
-	</section>
-	
-	{% block scripts %}
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="{% static '/js/main.js' %}?expire=1414619692181"></script>
-	<script src="{% static '/js/download.js' %}"></script>
-	<script src="{% static '/js/analytics.js' %}"></script>
-	<script src="{% static '/js/srcset.min.js' %}"></script>
-	<script src="{% static '/js/mixpanel.js' %}"></script>
-	{% include 'twitter.html' %}
-	{% include 'crazyegg.html' %}
-	{% endblock scripts %}
-
-	{% block extrascripts %}
-	{% endblock extrascripts %}
-</body>
-</html>
+{% block footer %}
+{% endblock footer %}

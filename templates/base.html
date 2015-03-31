@@ -32,7 +32,9 @@
 
 	<title>{% block title %}Framer - Prototype Interaction and Animation{% endblock %}</title>
 
+	{% include 'sentry.html' %}
 	{% include 'gosquared.html' %}
+	{% include 'twitter.html' %}
 </head>
 
 <body {% block currentpage %}{% endblock %}>
@@ -128,9 +130,11 @@
 	<script src="{% static '/js/analytics.js' %}"></script>
 	<script src="{% static '/js/srcset.min.js' %}"></script>
 	<script src="{% static '/js/mixpanel.js' %}"></script>
-	{% include 'twitter.html' %}
 	{% include 'crazyegg.html' %}
 	{% endblock scripts %}
+
+	{% block extrascripts %}
+	{% endblock extrascripts %}
 
 </body>
 </html>

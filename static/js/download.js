@@ -51,36 +51,45 @@ FramerSite.doDownload = function() {
 
 FramerSite.verifyEmailAddress = function(email, callback) {
 
+	function validateEmail(email) {
+    	var re = /\S+@\S+\.\S+/;
+    	return re.test(email);
+	}
+	// Trim the whitespace
+	email = $.trim(email);
+	callback({address:email, did_you_mean:null, is_valid:validateEmail(email)});
+
+
 	// This function verifies the email address and will return a response like:
 	// {address: "koen@mac.com", did_you_mean: null, is_valid: true, parts: Object}
 	// It might also return "timout" if it could not verify the email for more than 5 seconds
 
-	var success = false;
-	var mailGunApiKey = "pubkey-6aa8daa73bf18270e2e1586cbbccbcdd";
+	// var success = false;
+	// var mailGunApiKey = "pubkey-6aa8daa73bf18270e2e1586cbbccbcdd";
 
-	// Trim the whitespace
-	email = $.trim(email);
+	// // Trim the whitespace
+	// email = $.trim(email);
 
-	// Start the request to mailgun
-	$.ajax({
-		type: "GET",
-		url: 'https://api.mailgun.net/v2/address/validate?callback=?',
-		data: {address:email, api_key:mailGunApiKey},
-		dataType: "jsonp",
-		crossDomain: true,
-		success: function(data, status_text) {
-			success = true;
-			callback(data);
-		}
-	});
+	// // Start the request to mailgun
+	// $.ajax({
+	// 	type: "GET",
+	// 	url: 'https://api.mailgun.net/v2/address/validate?callback=?',
+	// 	data: {address:email, api_key:mailGunApiKey},
+	// 	dataType: "jsonp",
+	// 	crossDomain: true,
+	// 	success: function(data, status_text) {
+	// 		success = true;
+	// 		callback(data);
+	// 	}
+	// });
 
-	// Set a timeout function so we always get some result
-	setTimeout(function() {
-		if (success) {
-			return;
-		}
-		callback("timeout")
-	}, 5000);
+	// // Set a timeout function so we always get some result
+	// setTimeout(function() {
+	// 	if (success) {
+	// 		return;
+	// 	}
+	// 	callback("timeout")
+	// }, 5000);
 
 }
 
