@@ -4,10 +4,6 @@ var FramerSite = {};
 
 var _downloadLink = null;
 
-function isDefined(obj) {
-	return typeof obj !== "undefined";
-}
-
 FramerSite.getDownloadLink = function(callback) {
 
 	if (_downloadLink) {
@@ -22,7 +18,7 @@ FramerSite.getDownloadLink = function(callback) {
 		_downloadLink = downloadHost + "/" + result;
 		callback(_downloadLink)
 
-		if (isDefined(mixpanel) && mixpanel.get_distinct_id) {
+		if (window.mixpanel && window.mixpanel.get_distinct_id) {
 			_downloadLink += "?mp_id=" + mixpanel.get_distinct_id();
 		}
 		
@@ -36,12 +32,12 @@ FramerSite.doDownload = function() {
 		setTimeout(function() { window.location = downloadLink; }, 3000)
 
 		// Record the event in google analytics
-		if (isDefined(ga)) {
+		if (window.ga) {
 			ga('send', 'event', 'Download', 'Framer Studio', downloadLink)
 		}
 
 		// Record the event in mixpanel
-		if (isDefined(mixpanel)) {
+		if (window.mixpanel && window.mixpanel.track) {
 			mixpanel.track("page.download", {
 				"title": document.title,
 				"url": window.location.pathname,
@@ -50,12 +46,12 @@ FramerSite.doDownload = function() {
 		}
 
 		// Record the event in gosquared
-		if (isDefined(_gs)) {
+		if (window._gs) {
 			_gs('event', 'Download', {'Name': 'Framer Studio', 'Link': downloadLink});
 		}
 		
 		// Record the download event in Twitter
-		if (isDefined(twttr)) {
+		if (window.twttr) {
 			twttr.conversion.trackPid('l5elj');
 		}
 	})
@@ -119,7 +115,7 @@ FramerSite.registerNameAndEmailNewsletter = function(name, email, callback) {
 }
 
 FramerSite.registerNameAndEmailMixpanel = function(name, email, callback) {
-	if (!isDefined(mixpanel.get_distinct_id)) {
+	if (!window.mixpanel || !window.mixpanel.get_distinct_id) {
 		return;
 	}
 	mixpanel.identify(mixpanel.get_distinct_id())

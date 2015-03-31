@@ -2,10 +2,6 @@
 
 !function(t){var e=new Date(0),n=t.JSON,r=n.stringify,i=encodeURI,o=decodeURI,c=function(t){try{return n.parse(t)}catch(e){}return t},u=function(t){return"object"==typeof t&&r?r(t):t},s={set:function(t,e,n,r,o){var c=i(t)+"="+i(u(e));n&&(n.constructor===Number?c+=";max-age="+n:n.constructor===String?c+=";expires="+n:n.constructor===Date&&(c+=";expires="+n.toUTCString())),c+=";path="+(r?r:"/"),o&&(c+=";domain="+o),document.cookie=c},setObject:function(t,e,n,r){for(var i in t)this.set(i,t[i],e,n,r)},get:function(t){return this.getObject()[t]},getObject:function(){var t,e=document.cookie.split(/;\s?/i),n={};for(var r in e)t=e[r].split("="),t.length<=1||(n[o(t[0])]=c(o(t[1])));return n},unset:function(t){document.cookie=t+"=; expires="+e.toUTCString()},clear:function(){var t=this.getObject();for(var e in t)this.unset(e)}};"function"==typeof define&&define.amd?define(function(){return s}):t.CM=s}(this);
 
-function isDefined(obj) {
-	return typeof obj !== "undefined";
-}
-
 function mixpanelFirstVisit(f) {
 
 	var firstVisitKey = "page.visit.first";
@@ -22,6 +18,11 @@ function setupMixpanel(mixpanelId) {
 	for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
 	
 	mixpanel.init(mixpanelId);
+
+	if (!window.mixpanel.track) {
+		console.log("Mixpanel disabled :-/")
+		return;
+	}
 
 	mixpanel.track("page.visit", {
 		"title": document.title,
