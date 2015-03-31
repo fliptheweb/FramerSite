@@ -1,0 +1,25 @@
+###### page.currentPage
+<a id="page.currentPage"></a>
+<p class="small">
+Returns Layer Object
+</p>
+
+Get the current page layer. This property is read-only.
+
+<pre lang="coffeescript">
+page = new PageComponent()
+
+# Get the current page layer
+print page.currentPage
+</pre>
+
+Note that you have to have pages within the page.content layer. You can also listen to the `"change:currentPage"` event to get the new currentPage, after it has been changed.
+
+<pre lang="coffeescript">
+# Create a new PageComponent and only allow horizontal scrolling.
+page = new PageComponent()
+
+# When the current page changes, print the new one		
+page.on "change:currentPage", ->
+	print page.currentPage
+</pre>
