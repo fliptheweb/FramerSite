@@ -1,0 +1,21 @@
+###### scroll.mouseWheelEnabled(<span>bool</span>)
+<a id="scroll.mouseWheelEnabled"></a>
+
+Enable or disable scrolling with mousewheel. Disabled by default. When set to true, layers can be scrolled both by dragging and with the mouse.
+
+<pre lang="coffeescript">
+scroll = new ScrollComponent({
+    width: 100, height: 100
+})
+
+# Allow scrolling with mouse
+scroll.mouseWheelEnabled = true
+
+layer = new Layer({
+    image: "images/bg.png",
+    superLayer: scroll.content,
+    width: 100, height: 200
+})
+
+</pre>
+
