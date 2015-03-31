@@ -1,0 +1,25 @@
+###### scroll.contentLayersAbove(<span>object</span>)
+<a id="scroll.contentLayersAbove"></a>
+Get the content layer closest to a specific point. 
+
+<pre lang="coffeescript">
+scroll = new ScrollComponent()
+
+# Create content layers
+layerA = new Layer({
+	superLayer:scroll.content,
+	x:0, y:0, name:"layerA"
+})
+
+layerB = new Layer({
+	superLayer:scroll.content,
+	x:50, y:50, name:"layerB"
+})
+
+# Get the layer of which the top-left corner is closest to x:50, y:25
+print scroll.closestContentLayerForScrollPoint({x:50, y:25})
+
+# Returns layerB
+
+</pre>
+
