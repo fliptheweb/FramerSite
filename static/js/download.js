@@ -4,6 +4,10 @@ var FramerSite = {};
 
 var _downloadLink = null;
 
+function isDefined(obj) {
+	return typeof obj !== "undefined";
+}
+
 FramerSite.getDownloadLink = function(callback) {
 
 	if (_downloadLink) {
@@ -18,11 +22,7 @@ FramerSite.getDownloadLink = function(callback) {
 		_downloadLink = downloadHost + "/" + result;
 		callback(_downloadLink)
 
-		if (typeof mixpanel === "undefined") {
-			return;
-		}
-
-		if (mixpanel && mixpanel.get_distinct_id) {
+		if (isDefined(mixpanel) && mixpanel.get_distinct_id) {
 			_downloadLink += "?mp_id=" + mixpanel.get_distinct_id();
 		}
 		
@@ -36,20 +36,28 @@ FramerSite.doDownload = function() {
 		setTimeout(function() { window.location = downloadLink; }, 3000)
 
 		// Record the event in google analytics
-		ga('send', 'event', 'Download', 'Framer Studio', downloadLink)
+		if (isDefined(ga)) {
+			ga('send', 'event', 'Download', 'Framer Studio', downloadLink)
+		}
 
 		// Record the event in mixpanel
-		mixpanel.track("page.download", {
-			"title": document.title,
-			"url": window.location.pathname,
-			"link": downloadLink
-		})
+		if (isDefined(mixpanel)) {
+			mixpanel.track("page.download", {
+				"title": document.title,
+				"url": window.location.pathname,
+				"link": downloadLink
+			})
+		}
 
 		// Record the event in gosquared
-		_gs('event', 'Download', {'Name': 'Framer Studio', 'Link': downloadLink});
+		if (isDefined(_gs)) {
+			_gs('event', 'Download', {'Name': 'Framer Studio', 'Link': downloadLink});
+		}
 		
 		// Record the download event in Twitter
-		twttr.conversion.trackPid('l5elj');
+		if (isDefined(twttr)) {
+			twttr.conversion.trackPid('l5elj');
+		}
 	})
 }
 
@@ -111,7 +119,7 @@ FramerSite.registerNameAndEmailNewsletter = function(name, email, callback) {
 }
 
 FramerSite.registerNameAndEmailMixpanel = function(name, email, callback) {
-	if (typeof mixpanel === "undefined") {
+	if (!isDefined(mixpanel.get_distinct_id)) {
 		return;
 	}
 	mixpanel.identify(mixpanel.get_distinct_id())
@@ -119,7 +127,7 @@ FramerSite.registerNameAndEmailMixpanel = function(name, email, callback) {
 		"$name": name,
 		"$email": email
 	});
-	mixpanel.people.set_once(MixpanelExperiments.listExperiments("experiments."));
+	// mixpanel.people.set_once(MixpanelExperiments.listExperiments("experiments."));
 }
 
 FramerSite.registerNameAndEmail = function(name, email, callback) {

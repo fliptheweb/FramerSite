@@ -32,6 +32,9 @@
 
 	<title>{% block title %}Framer - Prototype Interaction and Animation{% endblock %}</title>
 
+	<!-- Always make sure JQuery is loaded -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 	{% include 'sentry.html' %}
 	{% include 'gosquared.html' %}
 	{% include 'twitter.html' %}
@@ -124,12 +127,11 @@
 	</footer> <!--footer.global-->
 	{% endblock footer %}
 	{% block scripts %}
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="{% static '/js/main.js' %}?expire=1414619692181"></script>
 	<script src="{% static '/js/download.js' %}"></script>
 	<script src="{% static '/js/analytics.js' %}"></script>
 	<script src="{% static '/js/srcset.min.js' %}"></script>
-	<script src="{% static '/js/mixpanel.js' %}"></script>
+	<script src="{% static '/js/mxpnl.js' %}"></script>
 	{% include 'crazyegg.html' %}
 	{% endblock scripts %}
 
