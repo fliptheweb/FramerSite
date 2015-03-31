@@ -1,0 +1,37 @@
+###### page.nextPage(direction <span>string</span>, currentPage <span>layer</span>)
+<a id="page.nextPage"></a>
+<p class="small">
+Returns: Layer Object
+</p>
+
+Get the next page. Takes two arguments: direction and the currentPage. By default, the direction is set to "right" and the currentPage will be the first page.
+
+<pre lang="coffeescript">
+page = new PageComponent({
+	width: Screen.width, height: Screen.height
+})
+
+pageOne = new Layer({
+	width: page.width, height: page.height
+	superLayer: page.content
+	backgroundColor: "#28affa"
+})
+
+pageTwo = new Layer({
+	width: page.width, height: page.height
+	backgroundColor: "#90D7FF"
+})
+
+page.addPage(pageTwo, "right")
+
+print page.nextPage()
+</pre>
+
+We can also set the currentPage to any other page. For instance, we can look which layer is at the left of the second page.
+
+<pre lang="coffeescript">
+# Get the page to the left of pageTwo
+print page.nextPage("left", pageTwo)
+
+# Returns pageOne
+</pre>
