@@ -4,11 +4,11 @@ Scroll to the closest content layer, using the given origin. The default values 
 
 <pre lang="coffeescript">
 scroll = new ScrollComponent()
+
 layerA = new Layer({
 	superLayer:scroll.content,
 	x: 75, y: 75
 })
-
 
 # Scroll to the center of layerA
 scroll.scrollToClosestLayer(0.5, 0.5)
