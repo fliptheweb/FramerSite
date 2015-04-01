@@ -22,12 +22,5 @@ pageTwo = new Layer({
 page.addPage(pageTwo, "right")
 
 # Automatically scroll to pageTwo
-page.snapToPage(pageTwo)
-</pre>
-
-In the example above, we can customize the scrolling animation by defining custom animationOptions as well. 
-
-<pre lang="coffeescript">
-# Define a slower easing curve
-page.snapToPage(pageTwo, true, animationOptions={curve:"ease", time:2})
+page.snapToNextPage()
 </pre>
