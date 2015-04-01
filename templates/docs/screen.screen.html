@@ -5,7 +5,7 @@ The Screen object contains the size for the current device screen. The size will
 ###### Screen.width <span>number</span>
 
 <a id="screen.width"></a>
-The width of the current device screen in pixels. This property is readonly.
+The width of the current device screen in pixels. This property is read-only.
 
 <pre lang="coffeescript">
 print Screen.width
@@ -16,9 +16,19 @@ print Screen.width
 ###### Screen.height <span>number</span>
 
 <a id="screen.height"></a>
-The height of the current device screen in pixels. This property is readonly.
+The height of the current device screen in pixels. This property is read-only.
 
 <pre lang="coffeescript">
 print Screen.height
 # Output: 1080
+</pre>
+
+###### Screen.size <span>object</span>
+
+<a id="screen.size"></a>
+The width and height of the current device screen in pixels. This property is read-only.
+
+<pre lang="coffeescript">
+print Screen.size
+# Output: {width:640, height:1080}
 </pre>
