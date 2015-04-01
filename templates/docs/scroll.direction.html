@@ -1,12 +1,13 @@
-###### scroll.direction <span>number</span>
+###### scroll.direction <span>string</span>
 <a id="scroll.direction"></a>
-Current scroll angle in degrees at this moment.
+
+Current scrolling direction. Returns "up", "down", "left" or "right". The scrolling direction is reversed: if you're dragging downwards, you're effectively scrolling upwards. This property is read-only.
 
 <pre lang="coffeescript">
 scroll = new ScrollComponent()
 
-# On scroll, print the angle
+# On scroll, print the direction
 scroll.on Events.Scroll, ->
-	print scroll.angle
+	print scroll.direction
 </pre>
 
