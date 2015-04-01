@@ -1,0 +1,33 @@
+###### page.snapToNextPage(page <span>layer</span>, animate <span>boolean</span>, animationOptions )
+<a id="page.snapToNextPage"></a>
+
+Snap to a specific page. Takes three arguments: a page.content layer, animate (true or false) and animationOptions. By default, animate is set to true and the animationCurve use a spring curve.
+
+<pre lang="coffeescript">
+page = new PageComponent({
+	width: Screen.width, height: Screen.height
+})
+
+pageOne = new Layer({
+	width: page.width, height: page.height
+	superLayer: page.content
+	backgroundColor: "#28affa"
+})
+
+pageTwo = new Layer({
+	width: page.width, height: page.height
+	backgroundColor: "#90D7FF"
+})
+
+page.addPage(pageTwo, "right")
+
+# Automatically scroll to pageTwo
+page.snapToPage(pageTwo)
+</pre>
+
+In the example above, we can customize the scrolling animation by defining custom animationOptions as well. 
+
+<pre lang="coffeescript">
+# Define a slower easing curve
+page.snapToPage(pageTwo, true, animationOptions={curve:"ease", time:2})
+</pre>
