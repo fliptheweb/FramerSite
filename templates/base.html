@@ -32,7 +32,12 @@
 
 	<title>{% block title %}Framer - Prototype Interaction and Animation{% endblock %}</title>
 
+	<!-- Always make sure JQuery is loaded -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	{% include 'sentry.html' %}
 	{% include 'gosquared.html' %}
+	{% include 'twitter.html' %}
 </head>
 
 <body {% block currentpage %}{% endblock %}>
@@ -45,13 +50,14 @@
 				<li class="{% block isdocs %}{% endblock %}"><a href="/docs">Docs</a></li>
 				<li class="{% block isexamples %}{% endblock %}"><a href="/examples">Examples</a></li>
 				<li class="community"><a href="https://www.facebook.com/groups/framerjs/" target="_blank">Community</a></li>
-				<li><a href="http://blog.framerjs.com">Blog</a></li>
+				<li class="blog"><a href="http://blog.framerjs.com">Blog</a></li>
 				<li class="more-dropdown-container">
 					<a class="more">More</a>
 					<ul class="more-dropdown">
 						<a href="/teach">Teach</a>
 						<a href="/jobs">Jobs</a>
 						<a href="/pricing">Pricing</a>
+						<a class="hide-item" href="http://blog.framerjs.com">Blog</a>
 						<a href="https://github.com/koenbok/Framer" target="_blank">Github</a>
 					</ul>
 				</li>
@@ -106,7 +112,7 @@
 					<li><a href="http://blog.framerjs.com">Blog</a></li>
 				</nav>
 				<section class="small-links">
-					<li class="copyright">Copyright &copy; 2015 Podium BV</li>
+					<li class="copyright">Copyright &copy; 2015 Motif Tools BV</li>
 					<li><a href="mailto:support@framerjs.com">Support</a></li>
 					<li><a href="https://twitter.com/framerjs" target="_blank">Twitter</a></li>
 				</section>
@@ -121,15 +127,16 @@
 	</footer> <!--footer.global-->
 	{% endblock footer %}
 	{% block scripts %}
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="{% static '/js/main.js' %}?expire=1414619692181"></script>
-	<script src="{% static '/js/download.js' %}"></script>
-	<script src="{% static '/js/analytics.js' %}"></script>
-	<script src="{% static '/js/srcset.min.js' %}"></script>
-	<script src="{% static '/js/mixpanel.js' %}"></script>
-	{% include 'twitter.html' %}
+	<script src="{% static '/js/main.js' %}?expire={% now "U" %}"></script>
+	<script src="{% static '/js/download.js' %}?expire={% now "U" %}"></script>
+	<script src="{% static '/js/analytics.js' %}?expire={% now "U" %}"></script>
+	<script src="{% static '/js/srcset.min.js' %}?expire={% now "U" %}"></script>
+	<script src="{% static '/js/mxpnl.js' %}?expire={% now "U" %}"></script>
 	{% include 'crazyegg.html' %}
 	{% endblock scripts %}
+
+	{% block extrascripts %}
+	{% endblock extrascripts %}
 
 </body>
 </html>
