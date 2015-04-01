@@ -1,0 +1,12 @@
+###### scroll.direction <span>number</span>
+<a id="scroll.direction"></a>
+Current scroll angle in degrees at this moment.
+
+<pre lang="coffeescript">
+scroll = new ScrollComponent()
+
+# On scroll, print the angle
+scroll.on Events.Scroll, ->
+	print scroll.angle
+</pre>
+
