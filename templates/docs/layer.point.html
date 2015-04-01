@@ -1,0 +1,19 @@
+###### layer.point <span>object</span>
+<a id="layer.point"></a>
+Allows you to set or capture the x, and y values of a layer.
+
+<pre lang="coffeescript">
+layerA = new Layer()
+
+print layerA.point
+# Output: {x:100, y:100}
+
+layerA.point = {x:10, y:200}
+
+print layerA.point
+# Output: {x:10, y:200}
+
+print layerA.x
+# Output: 10
+
+</pre>

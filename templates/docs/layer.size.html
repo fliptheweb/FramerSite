@@ -1,0 +1,19 @@
+###### layer.size <span>object</span>
+<a id="layer.size"></a>
+Allows you to set or capture the width and height values of a layer.
+
+<pre lang="coffeescript">
+layerA = new Layer()
+
+print layerA.size
+# Output: {width:100, height:100}
+
+layerA.size = {width:10, height:10}
+
+print layerA.size
+# Output: {width:10, height:10}
+
+print layerA.width
+# Output: 10
+
+</pre>
