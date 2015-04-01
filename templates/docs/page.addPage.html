@@ -1,12 +1,34 @@
 ###### page.addPage()
 <a id="page.addPage"></a>
 
-Snaps to the previous page. It keeps track of all previously visited pages, included the direction.
+Add a new page to the page.content layer of the PageComponent.
 
 <pre lang="coffeescript">
-page = new PageComponent()
+page = new PageComponent({
+	width: Screen.width, height: Screen.height
+})
 
-# Snap to the previous page
-page.snapToPreviousPage()
+# The first page, placed directly within the page.content
+pageOne = new Layer({
+	width: page.width, height: page.height
+	superLayer: page.content
+	backgroundColor: "#28affa"
+})
+
+# Second page
+pageTwo = new Layer({
+	width: page.width, height: page.height
+	backgroundColor: "#90D7FF"
+})
+
+# Third page
+pageThree = new Layer({
+	width: page.width, height: page.height
+	backgroundColor: "#CAECFF"
+})
+
+# Add the second and third page to the right
+page.addPage(pageTwo, "right")
+page.addPage(pageThree, "right")
 </pre>
 
