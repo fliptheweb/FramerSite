@@ -1,0 +1,17 @@
+###### scroll.copy()
+<a id="scroll.copy"></a>
+<p class="small">
+Returns: ScrollComponent
+</p>
+
+Copies a ScrollComponent, including its content and properties.
+
+<pre lang="coffeescript">
+scroll = new ScrollComponent()
+layerA = new Layer({superLayer:scroll.content})
+
+# Copy the ScrollComponent
+scrollB = scroll.copy()
+</pre>
+
+
