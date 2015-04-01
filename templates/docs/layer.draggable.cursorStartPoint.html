@@ -1,0 +1,17 @@
+###### layer.draggable.cursorStartPoint
+<a id="layer.draggable.cursorStartPoint"></a>
+<p class="small">
+Returns: Object
+</p>
+
+Get the x and y position of the cursor, relative to the Canvas. <br> This property is read-only.
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+
+# On DragStart, get x and y position of the cursor
+layerA.on Events.DragStart, ->
+	print layerA.draggable.layerStartPoint
+</pre>
+

@@ -1,0 +1,16 @@
+###### layer.draggable.layerCursorOffset
+<a id="layer.draggable.layerCursorOffset"></a>
+<p class="small">
+Returns: Object
+</p>
+
+Get the x and y position of the cursor, relative to the draggable layer. If you click in the top left-corner, it returns `{x:0, y:0}`. This property is read-only.
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+
+# Get the cursor position within the layer
+layerA.on Events.DragStart, ->
+	print layerA.draggable.layerCursorOffset
+</pre>

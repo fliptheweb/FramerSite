@@ -1,0 +1,16 @@
+###### layer.draggable.layerStartPoint
+<a id="layer.draggable.layerStartPoint"></a>
+<p class="small">
+Returns: Object
+</p>
+
+Get the x and y position of a draggable layer. This property is read-only.
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+
+# On DragStart, get the current x and y position 
+layerA.on Events.DragStart, ->
+	print layerA.draggable.layerStartPoint
+</pre>
