@@ -3,4 +3,5 @@
 .build
 .deploy
 static/css/*.css
+static/css/*.css.map
 build
