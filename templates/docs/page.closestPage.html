@@ -13,13 +13,13 @@ page = new PageComponent()
 print page.closestPage
 </pre>
 
-Note that you have to have pages within the page.content layer. You can also listen to the `"change:currentPage"` event to get the page closest to the new page, after it has been changed.
+Note that you have to have pages within the page.content layer. You can also listen to the `Scroll` event to get the page closest page while scrolling.
 
 <pre lang="coffeescript">
 # Create a new PageComponent and only allow horizontal scrolling.
 page = new PageComponent()
 
-# When the current page changes, print the new one		
-page.on "change:currentPage", ->
+# Print the closest page while scrolling		
+page.on Events.Scroll, ->
 	print page.closestPage
 </pre>
