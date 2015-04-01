@@ -1,0 +1,20 @@
+###### layer.draggable.isBeyondConstraints <span>boolean</span>
+<a id="layer.draggable.isBeyondConstraints"></a>
+
+Get the offset position of a layer, compared to its dragging contraints. If you set the dragging constraints to `{x:100, y:100}`, the layer will still be initially positioned at `x:0, y:0`. After dragging, the layer will be bound to its dragging contraints. This offset can be measured with constraintsOffset
+
+<pre lang="coffeescript">
+layerA = new Layer()
+layerA.draggable.enabled = true
+
+# Set dragging constraints
+layerA.draggable.constraints = {x:100, y:100, width:200, height:200}
+
+# Get the constraintsOffset
+print layerA.draggable.constraintsOffset
+
+# On move, see if the layer is beyond constraints or not
+layerA.on Events.Move, ->
+	print layerA.draggable.isBeyondConstraints
+</pre>
+
