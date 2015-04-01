@@ -1,16 +1,28 @@
-###### layer.draggable.propagateEvents
+###### layer.draggable.propagateEvents <span>boolean</span>
 <a id="layer.draggable.propagateEvents"></a>
-<p class="small">
-Returns: Object
-</p>
 
-Get the x and y position of the draggable layer, relative to the Screen. <br> This property is read-only.
+Set the propagateEvents property of a draggable layer. Set to true by default. This is useful when working with draggable layers within ScrollComponents or PageComponents, or nested Components.
+
+Let's say you'd like to have a draggable layer within the scroll.content layer. By default, moving the layer will also move the scroll.content. This is because both layers will listen to the dragging events. 
+
+To prevent any draggable subLayer from passing events to its superLayer, set propagateEvents to false. This applies to all nested draggable layers.
 
 <pre lang="coffeescript">
-layerA = new Layer()
+scroll = new ScrollComponent({
+    width: Screen.width, 
+    height: Screen.height
+})
+
+scroll.content.backgroundColor = "#28affa"
+
+layerA = new Layer({
+	superLayer: scroll.content,
+	backgroundColor: "#fff"
+})
+
 layerA.draggable.enabled = true
 
-# Get the x and y position of the layer
-layerA.on Events.DragMove, ->
-	print layerA.draggable.offset
+# Setting propagateEvents to false allows you to drag layerA
+# without also scrolling within the ScrollComponent
+layerA.draggable.propagateEvents = false
 </pre>
