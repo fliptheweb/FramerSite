@@ -24,3 +24,13 @@ page.addPage(pageTwo, "right")
 # Automatically scroll to pageTwo
 page.snapToNextPage()
 </pre>
+
+This allows you to snap to pages in any direction. For example, we can start on the first page by snapping to it without animating, and then animate back to the first page.
+
+<pre lang="coffeescript">
+# Start at page two by default
+page.snapToPage(pageTwo, false)
+
+# Scroll back to the page at its left, which is pageOne
+page.snapToNextPage("left", true)
+</pre>
