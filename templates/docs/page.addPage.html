@@ -1,7 +1,7 @@
 ###### page.addPage(page <span>layer</span>, direction <span>string</span>)
 <a id="page.addPage"></a>
 
-Add a new page to the page.content layer of the PageComponent.
+Add a new page to the page.content layer of the PageComponent. It takes two arguments: a layer (page) and a direction (right or bottom). 
 
 <pre lang="coffeescript">
 page = new PageComponent({
@@ -32,3 +32,27 @@ page.addPage(pageTwo, "right")
 page.addPage(pageThree, "right")
 </pre>
 
+If you're looking to add pages to the left, you can initially add them to the right, and instantly switch to a different page, using <a href="#page.snapToPage">snapToPage()</a>.
+
+<pre lang="coffeescript">
+page = new PageComponent({
+	width: Screen.width, height: Screen.height
+})
+
+pageOne = new Layer({
+	width: page.width, height: page.height
+	superLayer: page.content
+	backgroundColor: "#28affa"
+})
+
+pageTwo = new Layer({
+	width: page.width, height: page.height
+	backgroundColor: "#90D7FF"
+})
+
+# Add a page to the right
+page.addPage(pageTwo, "right")
+
+# Start at the second page by default
+page.snapToPage(pageTwo, false)
+</pre>
