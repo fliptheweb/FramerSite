@@ -1,0 +1,22 @@
+###### page.verticalPageIndex(page <span>layer</span>)
+<a id="page.verticalPageIndex"></a>
+
+Get the index for a page component with vertical pages. This is a number between 0 and the number of pages minus 1.
+
+<pre lang="coffeescript">
+page = new PageComponent({
+	width: Screen.width, height: Screen.height
+})
+
+pageA = new Layer({size: page.size})
+pageB = new Layer({size: page.size})
+
+page.addPage(pageA, "bottom")
+page.addPage(pageB, "bottom")
+
+print page.verticalPageIndex(pageA)
+# Prints: 0
+
+print page.verticalPageIndex(pageB)
+# Prints: 1
+</pre>
