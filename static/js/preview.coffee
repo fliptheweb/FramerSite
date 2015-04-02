@@ -1,4 +1,5 @@
 loadExample = (exampleName) ->
+
 	ga("send", "pageview", "http://framerjs.com/examples/#{exampleName}") if ga?
 
 	$("#code").attr "src", "code.html?name=#{exampleName}"
@@ -21,6 +22,9 @@ $(document).ready ->
 	else
 		exampleName = ""
 		exampleShowCode = false
+
+	# Strip trailing slash
+	exampleName = exampleName.replace(/\/+$/, "")
 
 	# exampleName = window.location.hash[1..]
 	document.title = exampleName
