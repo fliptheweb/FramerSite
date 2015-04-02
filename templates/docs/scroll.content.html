@@ -1,6 +1,6 @@
 ###### scroll.content <span>layer</span>
 <a id="scroll.content"></a>
-The actual layer handling the dragging and scrolling. To add content, create a new Layer and set its superLayer to the scroll.content layer.
+The layer to add content to. To add content, create a new Layer and set its `superLayer` to the `scroll.content` layer. When the content doesn't fit the ScrollComponent it will be clipped.
 
 <pre lang="coffeescript">
 scroll = new ScrollComponent({
