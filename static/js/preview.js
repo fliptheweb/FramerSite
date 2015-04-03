@@ -24,6 +24,7 @@
       exampleName = "";
       exampleShowCode = false;
     }
+    exampleName = exampleName.replace(/\/+$/, "");
     document.title = exampleName;
     loadExample(exampleName);
     $(".btn-close").hide();
