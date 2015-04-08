@@ -21,54 +21,64 @@
 {% block extrascripts %}
 
 <script type="text/javascript">
-// Bind enter to button click 
-$("input").keyup(function(event) {
-	if(event.keyCode == 13) {
-		$("button").click();
-	}
-});
 
+// If jquery was not loaded, we continue to download
+if (!window.jQuery) {
+	setTimeout(function() {
+		window.location.href = "/download/thanks.html";
+	}, 1000)
+}
 
-$("button").click(function() {
+$(document).ready(function() {
 
-	var name = $("#name").val();
-	var trimmedName = $.trim(name);
-	var address = $("#email").val();
-
-	// Check name first
-	if (trimmedName == "") {
-		$(".submit-error").html("Please fill in your name").addClass("show");
-		return;
-	}
-
-	$(".form").fadeTo(100, 0.35)
-
-	FramerSite.verifyEmailAddress(address, function(result) {
-		// If result isn't valid
-		if (!result.is_valid) {
-			$(".submit-error").html("Please enter a valid email address").addClass("show");
-			$(".form").fadeTo(100, 1)
-		} else {
-
-			FramerSite.registerNameAndEmail(name, address);
-
-			$(".submit-error").html("").removeClass("show");
-
-			setTimeout(function() {
-				window.location.href = "/download/thanks.html";
-			}, 2000)
-
-			if (typeof mixpanel !== "undefined") {
-				mixpanel.track("page.register", {
-					"title": document.title,
-					"url": window.location.pathname,
-					"name": name,
-					"email": address,
-				})
-			}
-
+	// Bind enter to button click 
+	$("input").keyup(function(event) {
+		if(event.keyCode == 13) {
+			$("button").click();
 		}
-	})
-});
+	});
+
+
+	$("button").click(function() {
+
+		var name = $("#name").val();
+		var trimmedName = $.trim(name);
+		var address = $("#email").val();
+
+		// Check name first
+		if (trimmedName == "") {
+			$(".submit-error").html("Please fill in your name").addClass("show");
+			return;
+		}
+
+		$(".form").fadeTo(100, 0.35)
+
+		FramerSite.verifyEmailAddress(address, function(result) {
+			// If result isn't valid
+			if (!result.is_valid) {
+				$(".submit-error").html("Please enter a valid email address").addClass("show");
+				$(".form").fadeTo(100, 1)
+			} else {
+
+				FramerSite.registerNameAndEmail(name, address);
+
+				$(".submit-error").html("").removeClass("show");
+
+				setTimeout(function() {
+					window.location.href = "/download/thanks.html";
+				}, 2000)
+
+				if (typeof mixpanel !== "undefined") {
+					mixpanel.track("page.register", {
+						"title": document.title,
+						"url": window.location.pathname,
+						"name": name,
+						"email": address,
+					})
+				}
+			}
+		})
+	});
+})
 </script>
 {% endblock extrascripts %}
