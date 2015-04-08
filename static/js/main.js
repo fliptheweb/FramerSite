@@ -114,7 +114,7 @@ $(document).ready(function() {
 			$(topNavPages).removeClass('fade-out');
 		}
 
-		if ($('body').hasClass('home') && playMiddleVideo == false) {
+		if ($('body').hasClass('home') && playMiddleVideo == false && videoMid && videoMid.play) {
 			if (scrollPos > 1020) {
 				videoMid.play();
 				playMiddleVideo = true
