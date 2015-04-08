@@ -103,17 +103,9 @@ function main() {
 	
 	searchNode.keyup(updateSearch)
 	searchNode.change(updateSearch)
-	document.getElementById("docs-search").addEventListener("search", updateSearch)
 
+	$("#docs-search").on("search", updateSearch);
 }
 
-function check() {
-	if (window.jQuery) {
-		main()
-	} else {
-		window.setTimeout(check, 100);
-	}
-}
-
-check()
+$(document).ready(main)
 
