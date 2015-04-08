@@ -1,8 +1,26 @@
-/* When clicking the learn navigation icons, load page from that point */
-if ($('body').hasClass('learn')) {
-	$('body.subpage.learn').scrollTop($('.learn-nav').offset().top);
-	$('body.subpage.learn.basics').scrollTop(0);
+function scrollDown() {
+
+	// When clicking the learn navigation icons, load page from that point
+
+	if (!window.jQuery) {
+		return;
+	}
+
+	body = $('body');
+
+	if (!body) {
+		return;
+	}
+
+	if (body.hasClass('learn')) {
+		$('body.subpage.learn').scrollTop($('.learn-nav').offset().top);
+		$('body.subpage.learn.basics').scrollTop(0);
+	}
 }
+
+// Try to do it immediately so we avoid a flickr, else do it when jQuery was loaded
+scrollDown()
+$(document).ready(scrollDown)
 
 $(document).ready(function() {
 	/* Overlay Video */
