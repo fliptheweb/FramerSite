@@ -10,11 +10,11 @@
 	<ul>	
 		<a href="/learn/basics"><li>Layers <div class="small">Hierarchy and Properties</div></li></a>
 		<a href="/learn/basics/animation"><li>Animation <div class="small">Curves and Timing</div></li></a>
-		<a href="/learn/basics/states"><li class="active">States <div class="small">Sets of properties</div></li></a>
+		<a href="/learn/basics/states"><li>States <div class="small">Sets of properties</div></li></a>
 		<a href="/learn/basics/events"><li>Events <div class="small">Layer interactions</div></li></a>
 		<a href="/learn/basics/dragging"><li>Dragging <div class="small">Draggable layers</div></li></a>
 		<a href="/learn/basics/scrolling"><li>Scrolling <div class="small">Scrollable layers</div></li></a>
-		<a href="/learn/basics/scrolling"><li>Pages <div class="small">Swipe pages</div></li></a>
+		<a href="/learn/basics/pages"><li class="active">Pages <div class="small">Swipe pages</div></li></a>
 	</ul>
 </div> <!--sidebar-->
 {% endblock sidebar %}
@@ -22,7 +22,7 @@
 {% block body %}
 {% filter pygmentify %}
 {% filter markdown %}
-### States
+### Pages
 
 States allow you to define different appearance options for a layer.
 When creating a new layer, the set of properties you define become the default state. A layer can have multiple states, each with a different set properties. States can then be cycled through, with or without animation.
