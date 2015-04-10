@@ -24,21 +24,27 @@
 {% filter markdown %}
 ### Scrolling
 
-A layer can be made scrollable as long as it contains a subLayer that exceeds its height or width. 
+You’re probably familiar with the smooth scrolling of iOS. Getting this to feel just right involves a lot of physics. The `ScrollComponent` in Framer takes care of this, while remaining completely customisable.
 
-<div class="with-illustration ten-lines">
+A ScrollComponent is built with two layers. First, the ScrollComponent itself, which serves as a masking layer. 
+
+Secondly, it contains a content layer that has draggable enabled and pre-defined constraints. The size of the content layer is calculated for you, based on the size of its subLayers.
+
+
+<div class="with-illustration square">
 <figure><img class="code-illustration no-border" src="/static/images/learn/scrolling.gif" srcset="/static/images/learn/scrolling@2x.gif 2x" draggable="false"></figure>
 <pre lang="coffeescript">
-# The superLayer
+# The ScrollComponent
+scroll = new ScrollComponent 
+	width:120, height:120
+
+# The content layer
 layerA = new Layer 
-	height:100
+	width:120, height:200
+	superLayer: scroll.content
 
-# The subLayer
-layerB = new Layer 
-	height:200, superLayer:layerA
-
-# Enable scrolling on the superLayer
-layerA.scroll = true
+# Disable horizontal scrolling
+scroll.scrollHorizontal = false
 </pre>
 </div>
 
