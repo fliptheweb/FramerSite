@@ -369,6 +369,8 @@ ul.numbered li:before {
 // Code blocks with illustrations and h5
 .with-illustration + h4,
 .with-illustration + h5,
+.with-full-illustration + h4,
+.with-full-illustration + h5,
 .highlight + h4,
 .highlight + h5 {
 	margin-top: $space64; // 64 - 32

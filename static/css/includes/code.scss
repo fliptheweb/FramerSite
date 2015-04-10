@@ -46,6 +46,10 @@ pre, code {
     overflow: hidden;
     border-radius: 3px;
 }
+// 300 x 300
+.square pre {
+    min-height: 300px;
+}
 .dragging pre {
     min-height: 200px;
 }
@@ -191,7 +195,7 @@ color: #FF9740; // Orange
     -ms-user-select: none;     
     text-align: right;
 }
-.docs .content-inner pre ol li:before {
+.content-inner pre ol li:before {
     width:12px;
     left:-4px;
     white-space: nowrap;

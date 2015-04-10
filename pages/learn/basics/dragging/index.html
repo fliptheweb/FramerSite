@@ -23,8 +23,18 @@
 {% block body %}
 {% filter pygmentify %}
 {% filter markdown %}
+
 ### Dragging
-To create a draggable layer, simply set draggable.enabled to true. You can also specify dragging speed. This is especially useful if you'd like a layer to be only horizontally or vertically draggable: simply set the speedX or speedY to 0. Setting the value higher than 1 creates accelerated dragging.
+Draggable layers in Framer include physics and many customisable properties that open up new creative possibilities. By accounting for things like the speed and the direction, you can take greater control over dragging interactions. 
+
+---
+
+Let’s start by creating a draggable layer. You can simply `draggable.enabled` to `true`. Now, you can pick up your layer, place it elsewhere, and even toss it around. 
+
+To only allow for dragging in one direction, set `draggable.horizontal` or `draggable.vertical` to `false`. Both are enabled by default.
+
+You can also specify the dragging speed, with speedX and speedY.  This can provide you with accelerated or reduced dragging. 
+
 
 <div class="with-full-illustration dragging">
 <figure><img class="code-illustration-dragging" src="/static/images/learn/dragging.gif" srcset="/static/images/learn/dragging@2x.gif 2x"></figure>
@@ -32,57 +42,128 @@ To create a draggable layer, simply set draggable.enabled to true. You can also 
 # Make the layer draggable 
 layerA.draggable.enabled = true
 
-# Set dragging speed
-layerA.draggable.speedX = 1
-
 # Prevent vertical dragging
+layerA.draggable.horizontal = true
+layerA.draggable.vertical = false
+
+# Alternative way by setting the speed
+layerA.draggable.speedX = 1
 layerA.draggable.speedY = 0
 </pre>
 </div>
 
-Framer has three dragging events that you can listen to: DragStart, DragMove and DragEnd.
+##### Constraints
 
-<div class="with-illustration dragging-events eight-lines">
-<figure><img class="code-illustration no-border" src="/static/images/learn/dragging-events.png" srcset="/static/images/learn/dragging-events@2x.png 2x"></figure>
+In most cases, you’ll want to limit the range a layer can be dragged within. For example, think of the pull-to-refresh gesture, in which you can only drag a certain distance. In Framer, this can be achieved by defining dragging constraints.
+
+Constraints have `x, y, width and height` properties. Think of it as another layer, that contains your draggable layer.
+
+<div class="with-full-illustration dragging">
+<figure><img class="code-illustration-dragging" src="/static/images/learn/dragging-constraints.gif" srcset="/static/images/learn/dragging-constraints@2x.gif 2x"></figure>
+<pre lang="coffeescript">
+# Make the layer draggable 
+layerA.draggable.enabled = true
+
+# Set the constraints frame
+layerA.draggable.constraints = {
+	x: 0
+	y: 0
+	width: 160
+	height: 80
+}
+
+</pre>
+</div>
+
+##### Overdrag, Bounce and Momentum
+It’s likely you’re already familiar with these terms, even if you don’t know them by name. Let’s have a look.
+
+A draggable layer can be dragged beyond its constraints, although it will snap back. This is called overdrag. Think of Safari on iOS, where you can drag websites beyond the top and bottom of the pages.
+
+You can disable this behaviour by setting overdrag to false.
+
+<pre lang="coffeescript">
+
+# Disable overdrag
+layerA.draggable.overdrag = false
+</pre>
+
+When a layer is moving in a direction after DragEnd, it can also bounce beyond its constraints. This is called `bounce`. It’s sort of like a rubber-band effect. You can disable this behaviour by setting bounce to false.
+
+<pre lang="coffeescript">
+# Disable bounce
+layerA.draggable.bounce = false
+</pre>
+
+Finally, setting `momentum` to false disables all default physics of your draggable layers, and prevents all drag animations. You can still move your layer, but you can’t toss it around anymore.
+
+<pre lang="coffeescript">
+# Disable momentum
+layerA.draggable.momentum = false
+</pre>
+
+##### Example
+The momentum and bounce properties can also be customised. To summarise what you’ve learned so far, have a look at this example of a [custom draggable layer with constraints](http://share.framerjs.com/drt8z0btracb/).
+
+
+---
+
+##### Events
+
+The three fundamental dragging events that you can listen to are: DragStart, DragMove and DragEnd.
+
+<div class="with-illustration square">
+<figure><img class="code-illustration no-border" src="/static/images/learn/dragging-events.gif" srcset="/static/images/learn/dragging-events@2x.gif 2x" draggable="false"></figure>
 <pre lang="coffeescript">
 # Start dragging
-layerA.on Events.DragStart, -> ...
+layerA.on Events.DragStart, ->
+    this.animate 
+        properties: {scale: 1.1}
 
 # When moving the draggable layer
-layerA.on Events.DragMove, -> ...
-
-# After dragging    
-layerA.on Events.DragEnd, -> ...
+layerA.on Events.DragMove, (event) -> 
+    ...
+    
+# After dragging
+layerA.on Events.DragEnd, -> 
+    this.animate 
+        properties: {scale: 1}
 </pre>
 </div>
 
-##### Example: Snap To Origin
-Below, the DragEnd event is used to prototype a simple interaction.
+The `Move` event is fired whenever the draggable layer is moving. Unlike the DragMove event, this includes the momentum and bounce animations.
 
-First, the current X and Y positions of the layers are stored in variables.
-When we let go of the layer, the DragEnd event fires and the layers snaps back to its original position.
+There are two specific events that occur when momentum and bounce are enabled: DragAnimationDidStart and DragAnimationDidEnd. They occur after DragEnd, while the layer is animating.
 
-<div class="with-illustration dragging-events eight-lines">
-<figure><img class="code-illustration no-border" src="/static/images/learn/dragging-snap.gif" srcset="/static/images/learn/dragging-snap@2x.gif 2x"></figure>
+<div class="with-illustration square">
+<figure><img class="code-illustration no-border" src="/static/images/learn/dragging-didstart.gif" srcset="/static/images/learn/dragging-didstart@2x.gif 2x" draggable="false"></figure>
 <pre lang="coffeescript">
-originX = layerA.x
-originY = layerA.y
+# After DragEnd, the DragAnimation starts.
+layerA.on Events.DragAnimationDidStart, ->
+    this.animate 
+        properties: {scale: 0.8}
 
-layerA.on Events.DragEnd, ->
-    layerA.animate
-        properties:
-            x: originX, y: originY
-        curve: "spring(600, 30, 0)"
+# Whenever the layer is moving. 
+layerA.on Events.Move, ->
+	...
 
+# The animation is defined by the bounce.
+layerA.on Events.DragAnimationDidEnd, -> 
+    this.animate 
+        properties: scale: 1}
 </pre>
 </div>
+
+Both the ScrollComponent and the PageComponent are built with Draggable Layers, meaning you can use all draggable properties and methods as well.
 
 <section class="summary">
 <h5>Summary</h5>
 <ul>
     <li>Setting draggable.enabled to true creates a draggable layer </li>
-    <li>Dragging direction can be defined with speedX and speedY </li>
-    <li>Layers have 3 dragging events: DragStart, DragMove and DragEnd </li>
+    <li>You can restrict the dragging direction of a layer </li>
+    <li>You can limit the dragging range within with constraints </li>
+    <li>By default, a draggable layer has overdrag, momentum and bounce. </li>
+    <li>The 3 basic dragging events are: DragStart, DragMove and DragEnd </li>
 </ul>
 </section>
 
