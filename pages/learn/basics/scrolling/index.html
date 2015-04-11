@@ -34,7 +34,7 @@ Secondly, it contains a content layer that has draggable enabled and pre-defined
 <div class="with-illustration square">
 <figure><img class="code-illustration no-border" src="/static/images/learn/scrolling.gif" srcset="/static/images/learn/scrolling@2x.gif 2x" draggable="false"></figure>
 <pre lang="coffeescript">
-# The ScrollComponent
+# Create a ScrollComponent
 scroll = new ScrollComponent 
 	width:120, height:120
 
@@ -48,20 +48,61 @@ scroll.scrollHorizontal = false
 </pre>
 </div>
 
-A layer can be made only horizontally or vertically scrollable.
+A great way to bring your static designs to life with Framer is by using the [Import](/learn/import) feature. To add scrolling behaviour to imported layers, you can wrap them in a ScrollComponent, using `ScrollComponent.wrap()`.
+
+
+---
+
+##### Content Inset
+
+Secondly, it contains a content layer that has draggable enabled and pre-defined constraints. The size of the content layer is calculated for you, based on the size of its subLayers.
+
+<div class="with-illustration square">
+<figure><img class="code-illustration no-border" src="/static/images/learn/scrolling-inset.gif" srcset="/static/images/learn/scrolling-inset@2x.gif 2x" draggable="false"></figure>
 <pre lang="coffeescript">
-layerA.scrollHorizontal = true
-layerA.scrollVertical = true
+# Create a ScrollComponent
+scroll = new ScrollComponent 
+	width:120, height:120
+
+# Define the contentInset
+scroll.contentInset = {
+	top: 40
+	bottom: 40 
+	right: 0
+	left: 0 	
+}
 </pre>
+</div>
+
+
+
+Just like a draggable layer, ScrollComponents can be made only horizontally or vertically scrollable.
+<pre lang="coffeescript">
+scroll.scrollHorizontal = true
+scroll.scrollVertical = true
+</pre>
+
+##### Events
 
 Framer also contains a scrolling event. Within the scroll event, the positions of the scrollable layer can be retrieved. Layer animations can be triggered based on these positions with <a href="/learn/coffeescript/loops-and-conditionals/#conditionals">conditionals</a>. 
 
+<div class="with-illustration square">
+<figure><img class="code-illustration no-border" src="/static/images/learn/scrolling-scrollY.gif" srcset="/static/images/learn/scrolling-scrollY@2x.gif 2x" draggable="false"></figure>
 <pre lang="coffeescript">
-# Scroll Event
-layerA.on Events.Scroll, ->
-	print layerA.scrollX
-	print layerA.scrollY
+# Create a ScrollComponent
+scroll = new ScrollComponent 
+	width:120, height:120
+
+# Check the vertical scrolling distance
+scroll.on Events.Scroll, ->
+
+	# When below -10, animate a layer
+	if scroll.scrollY < -10
+		layerA.animate 
+			properties: { scale: 1 }
+			curve: "spring(400,30,0)"
 </pre>
+</div>
 
 <section class="summary">
 <h5>Summary</h5>
